@@ -2,29 +2,29 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const persephonySDK = require('@persephony/sdk')
+const freeclimbSDK = require('@freeclimb/sdk')
 
 app.use(bodyParser.json())
 var port = process.env.PORT || 3000
-const persephony = persephonySDK()
+const freeclimb = freeclimbSDK()
 
 // Handles incoming calls
 app.post('/incomingCall', (req, res) => {
 
   // Create PerCL say script 
-  const say = persephony.percl.say('Hello. Thank you for invoking the accept incoming call tutorial.')
+  const say = freeclimb.percl.say('Hello. Thank you for invoking the accept incoming call tutorial.')
 
   // Create PerCL pause script with a duration of 100 milliseconds
-  const pause = persephony.percl.pause(100)
+  const pause = freeclimb.percl.pause(100)
 
   // Create PerCL say script
-  const sayGoodbye = persephony.percl.say('Goodbye')
+  const sayGoodbye = freeclimb.percl.say('Goodbye')
 
   // Create PerCL hangup script
-  const hangup = persephony.percl.hangup()
+  const hangup = freeclimb.percl.hangup()
 
   // Build scripts
-  const percl = persephony.percl.build(say, pause, sayGoodbye, hangup)
+  const percl = freeclimb.percl.build(say, pause, sayGoodbye, hangup)
 
   // Convert PerCL container to JSON and append to response
   res.status(200).json(percl)
