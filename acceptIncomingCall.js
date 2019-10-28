@@ -5,7 +5,7 @@ const app = express()
 const freeclimbSDK = require('@freeclimb/sdk')
 
 app.use(bodyParser.json())
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 80
 const freeclimb = freeclimbSDK()
 
 // Handles incoming calls
